@@ -6,10 +6,10 @@
 //
 // (can use xxd -i to convert binary into C include syntax, as a starting point)
 //
-testprogramAddress=0x0000;
+exports.testprogramAddress=0x0000;
 
 // we want to auto-clear the console if any output is sent by the program
-var consoleboxStream="";
+exports.consoleboxStream="";
 
 // demonstrate write hook
 writeTriggers[0x000F]="consoleboxStream += String.fromCharCode(d);"+
@@ -19,7 +19,7 @@ writeTriggers[0x000F]="consoleboxStream += String.fromCharCode(d);"+
 readTriggers[0xD011]="((consolegetc==undefined)?0:0xff)";  // return zero until we have a char
 readTriggers[0xD010]="var c=consolegetc; consolegetc=undefined; (c)";
 
-testprogram = [
+exports.testprogram = [
 	0xa9, 0x00,              // LDA #$00
 	0x20, 0x10, 0x00,        // JSR $0010
 	0x4c, 0x02, 0x00,        // JMP $0002

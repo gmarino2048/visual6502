@@ -1,5 +1,5 @@
 // This file testprogram.js can be substituted by one of several tests
-testprogramAddress=0x0000;
+exports.testprogramAddress=0x0000;
 
 // we want to auto-clear the console if any output is sent by the program
 var consoleboxStream="";
@@ -14,7 +14,7 @@ readTriggers[0x8000]="var c=consolegetc; consolegetc=undefined; (c)";
 
 // for opcodes, see http://www.textfiles.com/programming/CARDS/6800
 
-testprogram = [
+exports.testprogram = [
   0xce, 0x43, 0x21,  // LDX #4321
   0x35,              // TXS
   0xce, 0x80, 0x00,  // LDX #8000
