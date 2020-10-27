@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gmarino2048/visual6502/issues"
   },
-  "homepage": "https://github.com/gmarino2048/visual6502#readme"
+  "homepage": "https://github.com/gmarino2048/visual6502#readme",
+  "dependencies": {
+    "yargs": "^16.1.0"
+  }
 }
