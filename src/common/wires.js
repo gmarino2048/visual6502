@@ -20,31 +20,33 @@
  THE SOFTWARE.
 */
 
-var frame, chipbg, overlay, hilite, hitbuffer, ctx;
-var nodes = new Array();
-var transistors = {};
-var nodenamelist=[];
+exports.nodes = new Array();
+exports.transistors = {};
+exports.nodenamelist= [];
 
-var ngnd = nodenames['vss'];
-var npwr = nodenames['vcc'];
+var frame, chipbg, overlay, hilite, hitbuffer, ctx;
+
+ngnd = (nodenames) => nodenames['vss']
+npwr = (nodenames) => nodenames['vcc']
 
 var chipLayoutIsVisible = true;  // only modified in expert mode
 var hilited = [];
 
-function setupNodes(){
+
+exports.setupNodes = (segdefs, nodenames) => {
 	for(var i in segdefs){
 		var seg = segdefs[i];
 		var w = seg[0];
-		if(nodes[w]==undefined) 
-			nodes[w] = {segs: new Array(), num: w, pullup: seg[1]=='+',
+		if(exports.nodes[w]==undefined) 
+			exports.nodes[w] = {segs: new Array(), num: w, pullup: seg[1]=='+',
 			            state: false, gates: new Array(), c1c2s: new Array()};
-		if(w==ngnd) continue;
-		if(w==npwr) continue;
-		nodes[w].segs.push(seg.slice(3));
+		if(w==ngnd(nodenames)) continue;
+		if(w==npwr(nodenames)) continue;
+		exports.nodes[w].segs.push(seg.slice(3));
 	}
 }
 
-function setupTransistors(){
+exports.setupTransistors = (transdefs, nodenames) => {
 	for(i in transdefs){
 		var tdef = transdefs[i];
 		var name = tdef[0];
@@ -52,13 +54,13 @@ function setupTransistors(){
 		var c1 = tdef[2];
 		var c2 = tdef[3];
 		var bb = tdef[4];
-		if(c1==ngnd) {c1=c2;c2=ngnd;}
-		if(c1==npwr) {c1=c2;c2=npwr;}
+		if(c1==ngnd(nodenames)) {c1=c2;c2=ngnd(nodenames);}
+		if(c1==npwr(nodenames)) {c1=c2;c2=npwr(nodenames);}
 		var trans = {name: name, on: false, gate: gate, c1: c1, c2: c2, bb: bb};
-		nodes[gate].gates.push(trans);
-		nodes[c1].c1c2s.push(trans);
-		nodes[c2].c1c2s.push(trans);
-		transistors[name] = trans;
+		exports.nodes[gate].gates.push(trans);
+		exports.nodes[c1].c1c2s.push(trans);
+		exports.nodes[c2].c1c2s.push(trans);
+		exports.transistors[name] = trans;
 	}
 }
 
@@ -112,7 +114,7 @@ function setupHitBuffer(){
 	hitbuffer.height = grCanvasSize;
 	hitbuffer.style.visibility = 'hidden';
 	var ctx = hitbuffer.getContext('2d');
-	for(i in nodes) hitBufferNode(ctx, i, nodes[i].segs);
+	for(i in exports.nodes) hitBufferNode(ctx, i, exports.nodes[i].segs);
 }
 
 function hitBufferNode(ctx, i, w){
@@ -138,8 +140,8 @@ function hexdigit(n){return '0123456789ABCDEF'.charAt(n);}
 function refresh(){
 	if(!chipLayoutIsVisible) return;
 	ctx.clearRect(0,0,grCanvasSize,grCanvasSize);
-	for(i in nodes){
-		if(isNodeHigh(i)) overlayNode(nodes[i].segs);
+	for(i in exports.nodes){
+		if(isNodeHigh(i)) overlayNode(exports.nodes[i].segs);
 	}
 	hiliteNode(hilited);
 }
@@ -170,7 +172,7 @@ function hiliteNode(n){
 		} else {
 			ctx.fillStyle = 'rgba(255,255,255,0.7)';
 		}
-		var segs = nodes[n[i]].segs;
+		var segs = exports.nodes[n[i]].segs;
 		for(var s in segs){drawSeg(ctx, segs[s]); ctx.fill();}
 	}
 }
@@ -181,7 +183,7 @@ function hiliteTrans(n){
 	ctx.strokeStyle = 'rgba(255,255,255,0.7)';
 	ctx.lineWidth = 4
 	for(var t in n){
-		var bb = transistors[n[t]].bb
+		var bb = exports.transistors[n[t]].bb
 		var segs = [[bb[0], bb[2], bb[1], bb[2], bb[1], bb[3], bb[0], bb[3]]] 
 		for(var s in segs){drawSeg(ctx, segs[s]); ctx.stroke();}
 	}
@@ -281,7 +283,7 @@ function setStatus(){
 
 function setupNodeNameList(){
 	for(var i in nodenames)
-		nodenamelist.push(i);
+		exports.nodenamelist.push(i);
 }
 
 function nodeName(n) {

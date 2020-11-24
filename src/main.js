@@ -40,18 +40,17 @@ if(!(argv.chip)){
     console.warn('Chip not specified. Defaulting to 6502.')
     argv.chip = '6502'
 }
-else {
-    switch(argv.chip) {
-        case '6502':
-            config.importPath = './chip/6502'
-            break;
-        case '6800':
-            config.importPath = './chip/6800'
-            break;
-        default:
-            console.error('Provided chip is not a valid option. Select from "6502" or "6800".')
-            process.exit(2)
-    }
+
+switch(argv.chip) {
+    case '6502':
+        config.importPath = './chip/6502'
+        break;
+    case '6800':
+        config.importPath = './chip/6800'
+        break;
+    default:
+        console.error('Provided chip is not a valid option. Select from "6502" or "6800".')
+        process.exit(2)
 }
 
 if(!(argv.program)){
@@ -60,14 +59,17 @@ if(!(argv.program)){
 }
 
 // Do conditional imports
-const nodenames = require(`${config.importPath}/nodenames`).nodenames
-const segdefs = require(`${config.importPath}/segdefs`).segdefs
-const transdefs = require(`${config.importPath}/transdefs`).transdefs
+var nodenames = require(`${config.importPath}/nodenames`).nodenames
+var segdefs = require(`${config.importPath}/segdefs`).segdefs
+var transdefs = require(`${config.importPath}/transdefs`).transdefs
 
 // Support and testprogram are going to need a little massaging before they're ready
 // const support = require(`${config.importPath}/support`)
 // const testprogram = require(`${config.importPath}/testprogram`)
 
+const wires = require('./common/wires.js')
 
+wires.setupNodes(segdefs, nodenames)
+wires.setupTransistors(transdefs, nodenames)
 
-console.log(transdefs)
+console.log('Complete')

@@ -79,6 +79,8 @@ function setup(){
 	setTimeout(setup_part2, 0);
 }
 
+
+// TODO: this, but without the visual elements
 function setup_part2(){
 	frame = document.getElementById('frame');
 	statbox = document.getElementById('status');
