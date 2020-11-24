@@ -1,2 +1,4 @@
 # Ignore data output directory
 out/
+
+.vscode/
