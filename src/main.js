@@ -59,17 +59,26 @@ if(!(argv.program)){
 }
 
 // Do conditional imports
-var nodenames = require(`${config.importPath}/nodenames`).nodenames
-var segdefs = require(`${config.importPath}/segdefs`).segdefs
-var transdefs = require(`${config.importPath}/transdefs`).transdefs
+const nodenames = require(`${config.importPath}/nodenames`).nodenames
+const segdefs = require(`${config.importPath}/segdefs`).segdefs
+const transdefs = require(`${config.importPath}/transdefs`).transdefs
 
 // Support and testprogram are going to need a little massaging before they're ready
 // const support = require(`${config.importPath}/support`)
 // const testprogram = require(`${config.importPath}/testprogram`)
 
+/**
+ * IMPORTANT:
+ * 
+ * So it turns out that these are mainly redefined in the support.js file,
+ * which gets reimported later:
+ * 
+ * TODO: Change this to go into support file instead
+ */
 const wires = require('./common/wires.js')
 
 wires.setupNodes(segdefs, nodenames)
 wires.setupTransistors(transdefs, nodenames)
+wires.setupNodeNameList(nodenames)
 
 console.log('Complete')

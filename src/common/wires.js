@@ -281,12 +281,12 @@ function setStatus(){
 	statbox.innerHTML = res;
 }
 
-function setupNodeNameList(){
+exports.setupNodeNameList = (nodenames) => {
 	for(var i in nodenames)
 		exports.nodenamelist.push(i);
 }
 
-function nodeName(n) {
+exports.nodeName = (nodenames, n) => {
 	for(var i in nodenames){
 		if(nodenames[i]==n) return i;
 	}

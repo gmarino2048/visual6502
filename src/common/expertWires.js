@@ -85,11 +85,11 @@ function setup_part2(){
 	frame = document.getElementById('frame');
 	statbox = document.getElementById('status');
 	// load the circuit before acting on URL parameters
-	setupNodes();
-	setupTransistors();
-	setupParams();
-	setupExpertMode();
-	detectOldBrowser();
+	setupNodes();								// CONVERTED
+	setupTransistors();							// CONVERTED
+	setupParams();								// VISUAL
+	setupExpertMode();							// VISUAL
+	detectOldBrowser();							// VISUAL
 	setStatus('loading graphics...');
 	setTimeout(setup_part3, 0);
 }
@@ -105,7 +105,7 @@ function setup_part3(){
 }
 
 function setup_part4(){
-	setupTable();
+	setupTable();								// VISUAL
 	setupNodeNameList();
 	logThese=signalSet(loglevel);
 	loadProgram();
