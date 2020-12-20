@@ -75,15 +75,7 @@ const transdefs = require(`${config.importPath}/transdefs`).transdefs
  * 
  * TODO: Change this to go into support file instead
  */
-const wires = require('./common/wires.js')
-const program = require('./common/program.js')
-const Program = program.Program 
 
-program = new Program()
-
-wires.setupNodes(segdefs, nodenames)
-wires.setupTransistors(transdefs, nodenames)
-wires.setupNodeNameList(nodenames)
 
 
 console.log('Complete')
