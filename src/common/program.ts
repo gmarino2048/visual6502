@@ -3,6 +3,9 @@ const fs = require('fs')
 
 class Program {
 
+    address: number;
+    program: number[];
+
     constructor() {
         this.address = 0x00
         this.program = []

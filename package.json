@@ -18,5 +18,8 @@
   "homepage": "https://github.com/gmarino2048/visual6502#readme",
   "dependencies": {
     "yargs": "^16.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.14"
   }
 }
