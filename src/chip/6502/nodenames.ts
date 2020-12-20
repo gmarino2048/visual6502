@@ -191,10 +191,8 @@ notir5: 1394,
 notir6: 895,
 notir7: 1320,
 irline3: 996,   // internal signal: PLA input - ir0 OR ir1
-clock1: 1536,   // internal state: timing control aka #T0
-clock1: 1536,    // automatic alias replacing hash with tilde
+clock1: 1536,   // automatic alias replacing hash with tilde
 clock2: 156,    // internal state: timing control aka #T+
-clock2: 156,     // automatic alias replacing hash with tilde
 t2: 971,        // internal state: timing control
 t3: 1567,
 t4: 690,
@@ -248,7 +246,6 @@ sb5: 166,
 sb6: 1336,
 sb7: 1001,
 notalu0: 394,   // datapath state: alu output storage node (inverse) aka #ADD0
-notalu0: 394,    // automatic alias replacing hash with tilde
 notalu1: 697,
 notalu2: 276,
 notalu3: 495,
@@ -827,14 +824,6 @@ AxB7: 1241,
 "~(A+B)6": 1084, // automatic alias replacing hash with tilde
 "#(A+B)7": 1398,
 "~(A+B)7": 1398, // automatic alias replacing hash with tilde
-"#(AxB)0": 1525,
-"~(AxB)0": 1525, // automatic alias replacing hash with tilde
-"#(AxB)2": 701,
-"~(AxB)2": 701, // automatic alias replacing hash with tilde
-"#(AxB)4": 308,
-"~(AxB)4": 308, // automatic alias replacing hash with tilde
-"#(AxB)6": 1459,
-"~(AxB)6": 1459, // automatic alias replacing hash with tilde
 "#(AxB)1": 953,
 "~(AxB)1": 953, // automatic alias replacing hash with tilde
 "#(AxB)3": 884,
@@ -909,7 +898,6 @@ aluvout: 938,        // alu overflow out (latched by phi2)
 "~DBZ": 1268,    // automatic alias replacing hash with tilde
 DBZ: 744,       // internal signal: databus is zero
 DBNeg: 1200,    // internal signal: databus is negative (top bit of db) aka P-#DB7in
-DBNeg: 1200,     // automatic alias replacing hash with tilde
 
 "dpc22_#DSA": 725,   // decimal related/SBC only (inverted)
 "dpc22_~DSA": 725,    // automatic alias replacing hash with tilde
