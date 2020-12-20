@@ -12,12 +12,14 @@ exports.testprogramAddress=0x0000;
 exports.consoleboxStream="";
 
 // demonstrate write hook
+/*
 writeTriggers[0x000F]="consoleboxStream += String.fromCharCode(d);"+
                       "consolebox.innerHTML = consoleboxStream;";
 
 // demonstrate read hook (not used by this test program)
 readTriggers[0xD011]="((consolegetc==undefined)?0:0xff)";  // return zero until we have a char
 readTriggers[0xD010]="var c=consolegetc; consolegetc=undefined; (c)";
+*/
 
 exports.testprogram = [
 	0xa9, 0x00,              // LDA #$00
