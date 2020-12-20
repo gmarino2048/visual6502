@@ -20,11 +20,20 @@ class Program {
     readFile(filepath) {
         fs.open(filepath, 'r', (err, fd) => {
             if(err) {
-                console.error(err);
-                process.exit(1);
+                console.error(err)
+                process.exit(1)
             }
 
-            
+            fs.read(fd, (err, read, buffer) => {
+                if(err){
+                    console.error(err)
+                    process.exit(1);
+                }
+
+                for(var i = 0; i < read; i++){
+                    
+                }
+            })
         })
     }
 }
