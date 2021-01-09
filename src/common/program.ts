@@ -90,6 +90,6 @@ class Program {
     }
 }
 
-module.exports = {
-    Program: Program
+export {
+    Program
 }
