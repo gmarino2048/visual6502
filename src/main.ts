@@ -1,6 +1,12 @@
 // Import required modules
 const yargs = require('yargs')
 
+// Import TS modules
+import * as program from './common/program'
+import { Config } from './common/common'
+
+var params = new Config()
+
 // Set up signal handlers
 process.on('SIGINT', () => {
     console.error('SIGINT received. Stopping...')
@@ -42,12 +48,24 @@ if(!(argv.chip)){
     argv.chip = '6502'
 }
 
+import { transdefs as td6502 } from './chip/6502/transdefs'
+import { transdefs as td6800 } from './chip/6800/transdefs'
+
+import { segdefs as sd6502 } from './chip/6502/segdefs'
+import { segdefs as sd6800 } from './chip/6800/segdefs'
+
 switch(argv.chip) {
     case '6502':
-        config.importPath = './chip/6502'
+        params.chip = argv.chip
+
+        params.transdefs = td6502
+        params.segdefs = sd6502
         break;
     case '6800':
-        config.importPath = './chip/6800'
+        params.chip = argv.chip
+
+        params.transdefs = td6800
+        params.segdefs = sd6800
         break;
     default:
         console.error('Provided chip is not a valid option. Select from "6502" or "6800".')
@@ -62,19 +80,14 @@ else {
     config.programPath = argv.program
 }
 
-/**
- * ARGUMENT PARSING COMPLETE, BEGIN SETUP
- */
-
-const program = require('./common/program')
-var runnableProgram = new program.Program()
+// Set up test program
+params.program = new program.Program()
 
 if(!config.useTestProgram){
-    runnableProgram.setupFile(config.programPath)
+    params.program.setupFile(config.programPath)
 }
 else{
     // TODO: Import and set up test program
 }
-
 
 console.log('Complete')
