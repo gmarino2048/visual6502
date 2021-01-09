@@ -32,6 +32,7 @@ const argv = yargs
 // Extract data from arguments
 var config = {
     importPath: null,
+    programPath: null,
     useTestProgram: false,
 }
 
@@ -57,25 +58,23 @@ if(!(argv.program)){
     console.warn('No input program specified. Using test programs.')
     config.useTestProgram = true
 }
-
-// Do conditional imports
-const nodenames = require(`${config.importPath}/nodenames`).nodenames
-const segdefs = require(`${config.importPath}/segdefs`).segdefs
-const transdefs = require(`${config.importPath}/transdefs`).transdefs
-
-// Support and testprogram are going to need a little massaging before they're ready
-// const support = require(`${config.importPath}/support`)
-// const testprogram = require(`${config.importPath}/testprogram`)
+else {
+    config.programPath = argv.program
+}
 
 /**
- * IMPORTANT:
- * 
- * So it turns out that these are mainly redefined in the support.js file,
- * which gets reimported later:
- * 
- * TODO: Change this to go into support file instead
+ * ARGUMENT PARSING COMPLETE, BEGIN SETUP
  */
 
+const program = require('./common/program')
+var runnableProgram = new program.Program()
+
+if(!config.useTestProgram){
+    runnableProgram.setupFile(config.programPath)
+}
+else{
+    // TODO: Import and set up test program
+}
 
 
 console.log('Complete')

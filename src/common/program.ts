@@ -7,7 +7,6 @@ class Program {
     private address: number;
     private program: number[];
 
-
     constructor(){
         this.address = 0x00;
         this.program = [];
