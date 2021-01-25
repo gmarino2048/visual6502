@@ -36,6 +36,7 @@ export abstract class Processor {
 
         this.setupNodes(this._segdefs);
         this.setupTransistors(this._transdefs);
+        this.setupNodeNameList();
     }
 
     protected abstract setupNodes(segdefs: any[]): void;
