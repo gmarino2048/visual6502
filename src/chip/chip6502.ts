@@ -6,9 +6,6 @@ import { segdefs as segdefs6502 } from './6502/segdefs'
 
 class Processor6502 extends Processor {
 
-    private ngnd: any;
-    private npwr: any;
-
     constructor(){
         super(
             '6502',
@@ -16,9 +13,6 @@ class Processor6502 extends Processor {
             transdefs6502,
             segdefs6502
         );
-
-        this.ngnd = this._nodenames['vss'];
-        this.npwr = this._nodenames['vcc'];
     }
 
     setupNodes(segdefs: any[]): void {

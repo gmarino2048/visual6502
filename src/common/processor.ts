@@ -9,6 +9,9 @@ export abstract class Processor {
     protected _nodenames: any[];
     protected _transistors: any = {};
     protected _nodenamelist: any[] = [];
+
+    protected ngnd: any;
+    protected npwr: any;
     
     get name(): string {
         return this._name;
@@ -37,6 +40,9 @@ export abstract class Processor {
         this.setupNodes(this._segdefs);
         this.setupTransistors(this._transdefs);
         this.setupNodeNameList();
+
+        this.ngnd = this._nodenames['vss'];
+        this.npwr = this._nodenames['vcc'];
     }
 
     protected abstract setupNodes(segdefs: any[]): void;
