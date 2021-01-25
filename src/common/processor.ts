@@ -5,7 +5,10 @@ export abstract class Processor {
     protected _transdefs: any[];
     protected _segdefs: any[];
 
-    protected 
+    protected _nodes: Array<any> = new Array();
+    protected _nodenames: any[];
+    protected _transistors: any = {};
+    protected _nodenamelist: any[] = [];
     
     get name(): string {
         return this._name;
@@ -21,18 +24,24 @@ export abstract class Processor {
 
     protected constructor(
         name: string,
+        nodenames: any,
         transdefs: any[],
         segdefs: any[]){
         // Initialize processor information
         this._name = name;
+            
+        this._nodenames = nodenames;
         this._transdefs = transdefs;
         this._segdefs = segdefs;
 
+        this.setupNodes(this._segdefs);
         this.setupTransistors(this._transdefs);
     }
 
-    protected abstract setupTransistors (transdefs: any[]): void;
+    protected abstract setupNodes(segdefs: any[]): void;
+    protected abstract setupTransistors(transdefs: any[]): void;
 
+    /*
     abstract initChip(): void;
     abstract chipStatus(): void;
 
@@ -43,4 +52,5 @@ export abstract class Processor {
     abstract halfStep(): void;
     abstract stepBack(): void;
     abstract stepForward(): void;
+    */
 }
