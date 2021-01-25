@@ -20,7 +20,7 @@
  THE SOFTWARE.
 */
 
-exports.nodenames = {
+export var nodenames: any = {
 res: 159,       // pads: reset
 rw: 1156,       // pads: read not write
 db0: 1005,      // pads: databus
