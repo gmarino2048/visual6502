@@ -41,6 +41,25 @@ export abstract class Processor {
     protected abstract setupNodes(segdefs: any[]): void;
     protected abstract setupTransistors(transdefs: any[]): void;
 
+    protected setupNodeNameList(): void {
+        for(var i in this._nodenames){
+            this._nodenamelist.push(i);
+        }
+    }
+
+    protected nodeName(name: string): any{
+        for(var i in this._nodenames){
+            if(this._nodenames[i] == name){
+                return i;
+            }
+        }
+        return '';
+    }
+
+    protected now(): number {
+        return new Date().getTime();
+    }
+
     /*
     abstract initChip(): void;
     abstract chipStatus(): void;
