@@ -2,10 +2,14 @@
     "compilerOptions": {
         "module": "commonjs",
         "rootDir": "src/",
-        "outDir": "build/"
+        "outDir": "build/",
+        "target": "ES6",
+        "allowJs": true,
     },
     "exclude": [
         "node_modules",
+        "build",
+        "original",
         "src/chip"
     ]
 }
