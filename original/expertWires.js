@@ -84,12 +84,24 @@ function setup_part2(){
 	statbox = document.getElementById('status');
 	// load the circuit before acting on URL parameters
 	setupNodes();
+	
 	setupTransistors();
+	
 	setupParams();
 	setupExpertMode();
 	detectOldBrowser();
 	setStatus('loading graphics...');
 	setTimeout(setup_part3, 0);
+	console.log('Nodes')
+	console.log(JSON.stringify(nodes))
+	console.log('Transistors')
+	console.log(JSON.stringify(transistors))
+	console.log('Nodenames')
+	console.log(JSON.stringify(nodenames))
+	console.log('Segdefs')
+	console.log(JSON.stringify(segdefs))
+	console.log('Transdefs')
+	console.log(JSON.stringify(transdefs))
 }
 
 function setup_part3(){
